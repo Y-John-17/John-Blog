@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>html on Hugo</title>
-    <link>https://example.com/tags/html/</link>
-    <description>Recent content in html on Hugo</description>
+    <title>Blog on Hugo</title>
+    <link>https://example.com/tags/blog/</link>
+    <description>Recent content in Blog on Hugo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Nov 2022 11:51:53 +0800</lastBuildDate><atom:link href="https://example.com/tags/html/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Nov 2022 11:51:53 +0800</lastBuildDate><atom:link href="https://example.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Blog Website Construction</title>
       <link>https://example.com/posts/blog-website-construction/</link>
@@ -14,15 +14,6 @@
       
       <guid>https://example.com/posts/blog-website-construction/</guid>
       <description>Personal Blog Building 🔗 brief introduction hugo : The blog generation framework used in this article github : Blog dynamic remote storage warehouse (realize web page dynamic refresh) netlify : Web hosting (Publication of web pages) Git: Complete the remote warehouse download and push tool environment construction 🔗 R compiled language Choose a close mirror image Select an installation package for your operating system , and performing the installation R</description>
-    </item>
-    
-    <item>
-      <title>Markdown Syntax Guide</title>
-      <link>https://example.com/posts/markdown-syntax-guide/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://example.com/posts/markdown-syntax-guide/</guid>
-      <description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;</description>
     </item>
     
   </channel>

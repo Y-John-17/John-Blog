@@ -1,8 +1,24 @@
+---
+title: "Blog Website Construction"
+date: 2022-11-21T11:51:53+08:00
+author: Y John
+tags:
+categories:
+series:
+- Themes Guide
+tags:
+- Blog
+- css
+- html
+draft: false
+
+---
+
  # Personal Blog Building
 
- >**brief introduction**
- >
- > -   [hugo](https://github.com/gohugoio/hugo/releases) : The blog generation framework used in this article
+> **brief introduction**
+
+[hugo](https://github.com/gohugoio/hugo/releases) : The blog generation framework used in this article
 
  -   [github](https://github.com/) : Blog dynamic remote storage warehouse (realize web page dynamic refresh)
 

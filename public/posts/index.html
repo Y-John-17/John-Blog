@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="Personal Blog Building 🔗 brief introduction hugo : The blog generation framework used in this article github : Blog dynamic remote storage warehouse (realize web page dynamic refresh) netlify : Web hosting (Publication of web pages) Git: Complete the remote warehouse download and push tool environment construction 🔗 R compiled language Choose a close mirror image Select an installation package for your operating system , and performing the installation R">
+<meta name="description" content="My Blog">
 <meta name="generator" content="Hugo 0.106.0">
 
 
@@ -37,6 +37,11 @@ if (!doNotTrack) {
 
 
 
+  
+    <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="Hugo" />
+    <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="Hugo" />
+  
+
 
   </head>
 
@@ -59,228 +64,117 @@ if (!doNotTrack) {
 
     <main class="main">
       
-
-<section id="single">
-    <h1 class="title"></h1>
-
-    <div class="tip">
-        <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">Jan 1, 0001</time>
-        <span class="split">
-          ·
-        </span>
-        <span>
-          618 words
-        </span>
-        <span class="split">
-          ·
-        </span>
-        <span>
-          2 minute read
-        </span>
-    </div>
-
+<header class="profile">
     
-    
-        
-  
-    <aside class="toc">
-      <details>
-          <summary>Table of Contents
-          </summary>
-          <div>
-              <nav id="TableOfContents">
-  <ul>
-    <li><a href="#environment-construction">environment construction</a></li>
-    <li><a href="#blog-building">Blog building</a>
-      <ul>
-        <li><a href="#the-first-way">The first way</a></li>
-        <li><a href="#the-second-way">The second way</a></li>
-        <li><a href="#the-third-way">The third way</a></li>
-      </ul>
-    </li>
-    <li><a href="#host-your-website">Host your website</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#epilogue">Epilogue</a></li>
-  </ul>
-</nav>
-          </div>
-      </details>
-    </aside>
-  
-
-
+        <img class="avatar" alt="avatar" src="/images/avatar.png" />
     
 
+    <h1>Hugo</h1>
+    
+    
+      <h2>Software Engineer</h2>
+    
+</header>
 
-    <div class="content">
-      <h1 id="personal-blog-building">Personal Blog Building <a href="#personal-blog-building" class="anchor">🔗</a></h1><blockquote>
-<p><strong>brief introduction</strong></p>
-<ul>
-<li><a href="https://github.com/gohugoio/hugo/releases" target="_blank" rel="noopener">hugo</a> : The blog generation framework used in this article</li>
-</ul>
-</blockquote>
-<ul>
-<li>
-<p><a href="https://github.com/" target="_blank" rel="noopener">github</a> : Blog dynamic remote storage warehouse (realize web page dynamic refresh)</p>
-</li>
-<li>
-<p><a href="app.netlify.com">netlify</a> : Web hosting (Publication of web pages)</p>
-</li>
-<li>
-<p><a href="https://git-scm.com" target="_blank" rel="noopener">Git</a>: Complete the remote warehouse download and push tool</p>
-</li>
-</ul>
-<h2 id="environment-construction">environment construction <a href="#environment-construction" class="anchor">🔗</a></h2><blockquote>
-<p><a href="https://www.r-project.org/" target="_blank" rel="noopener">R compiled language</a></p>
-</blockquote>
-<ul>
-<li>
-<p>Choose a close mirror image</p>
-</li>
-<li>
-<p>Select an installation package for your operating system , and performing the installation</p>
-</li>
-</ul>
-<blockquote>
-<p><a href="https://posit.co/products/open-source/rstudio/" target="_blank" rel="noopener">R studio</a></p>
-</blockquote>
-<ul>
-<li>Download and installation</li>
-</ul>
-<blockquote>
-<p><a href="https://github.com/gohugoio/hugo/releases" target="_blank" rel="noopener">Hugo</a></p>
-</blockquote>
-<ul>
-<li>You can choose to install it in your own operating system, or you can choose to install it in Rstudio (usually not recommended)</li>
-</ul>
-<blockquote>
-<p><a href="https://github.com/" target="_blank" rel="noopener">Github</a></p>
-</blockquote>
-<ul>
-<li>
-<p>Sign up a Github account</p>
-</li>
-<li>
-<p>Create a new repository ( remember to ==Add a README file==)</p>
-</li>
-</ul>
-<blockquote>
-<p><a href="netlify">netlify</a></p>
-</blockquote>
-<ul>
-<li>You can sign in with the github acount</li>
-</ul>
-<h2 id="blog-building">Blog building <a href="#blog-building" class="anchor">🔗</a></h2><blockquote>
-<p>There are three ways to do this</p>
-</blockquote>
-<h3 id="the-first-way">The first way <a href="#the-first-way" class="anchor">🔗</a></h3><blockquote>
-<h4 id="open-rstudio">Open Rstudio <a href="#open-rstudio" class="anchor">🔗</a></h4></blockquote>
-<ul>
-<li>install.package(&lsquo;blogdown&rsquo;)</li>
-</ul>
-<blockquote>
-<h4 id="the-next-steps">The next steps <a href="#the-next-steps" class="anchor">🔗</a></h4></blockquote>
-<ul>
-<li>
-<p><code>file</code> &ndash;&gt;<code>New Project</code>&ndash;&gt;<code>New Directory</code>&ndash;&gt;selecting <code>Website using blogdown</code>among the options.  next, type &ldquo;Your blog directory name&rdquo; at <code>Directory name</code>and &ldquo;Your Hugo theme you liked (==Usual format: Author/subject name==)&rdquo; at <code>Hugo theme</code>,at last, choose <code>Open in new session</code>&ndash;&gt;<code>Create Project</code></p>
-</li>
-<li>
-<p><strong>now, we already compeleted environment construction and file project for the blog creation</strong></p>
-</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#666">&gt;</span> blogdown<span style="color:#666">::</span><span style="color:#00a000">server</span>()       <span style="color:#080;font-style:italic"># preview the blog website  </span>
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span>  
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span>  <span style="color:#080;font-style:italic"># If you want to change the theme of you blog webits,try doing so  </span>
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> blogdown<span style="color:#666">::</span><span style="color:#00a000">new_site</span>( theme <span style="color:#666">=</span> <span style="color:#b44">&#34;Author/subject name&#34;</span>)   
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span>   
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> <span style="color:#080;font-style:italic"># -   Finish building your website  </span>
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> blogdown<span style="color:#666">::</span><span style="color:#00a000">build_site</span>()
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> <span style="color:#080;font-style:italic"># next step is to publish</span>
-</span></span></code></pre></div><hr>
-<h3 id="the-second-way">The second way <a href="#the-second-way" class="anchor">🔗</a></h3><ul>
-<li>Firstly, copy your github repository&rsquo;s <a href="URL">code</a> (This is used for cloning and push)  <code>file</code> &ndash;&gt;<code>New Project</code>&ndash;&gt;<code>Version Control</code>&ndash;&gt;<code>Git</code>,type your <a href="URL">repository URL</a> and project directory name</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#666">&gt;</span> <span style="color:#00a000">library</span>(blogdown)  
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> blogdown<span style="color:#666">::</span><span style="color:#00a000">new_site</span>( theme <span style="color:#666">=</span> <span style="color:#b44">&#34;Author/subject name&#34;</span>)  
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> blogdown<span style="color:#666">::</span><span style="color:#00a000">server</span>()  
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> blogdown<span style="color:#666">::</span><span style="color:#00a000">build_site</span>()
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> <span style="color:#080;font-style:italic"># next step is to publish</span>
-</span></span></code></pre></div><hr>
-<h3 id="the-third-way">The third way <a href="#the-third-way" class="anchor">🔗</a></h3><ul>
-<li>This is the simplest of the three methods</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#666">&gt;</span> hugo new site <span style="color:#b44">&#34;Your blog&#39;s name&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> git clone https<span style="color:#666">://</span>github.com<span style="color:#666">/</span>digitalcraftsman<span style="color:#666">/</span>hugo<span style="color:#666">-</span>agency<span style="color:#666">-</span>theme   themes<span style="color:#666">/</span><span style="color:#b44">&#34;theme&#39;s name&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> hugo server <span style="color:#666">-</span>t hugo<span style="color:#666">-</span>agency<span style="color:#666">-</span>theme <span style="color:#666">--</span>buildDrafts       <span style="color:#080;font-style:italic"># preview</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> hugo new posts<span style="color:#666">/</span>blog.md                               <span style="color:#080;font-style:italic"># Add a blog</span>
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> hugo <span style="color:#666">--</span>theme<span style="color:#666">=</span>hugo<span style="color:#666">-</span>agency<span style="color:#666">-</span>theme <span style="color:#666">--</span>baseUrl<span style="color:#666">=</span><span style="color:#b44">&#34;https://lastknightcoder.github.io/&#34;</span> <span style="color:#666">--</span>buildDrafts
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> cd public
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> ls
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> <span style="color:#080;font-style:italic"># next step is to publish</span>
-</span></span></code></pre></div><hr>
-<p>Now, you can browse public, this folder contains all of your blog website files, [host this folder on <a href="netlify">netlify</a> and you will be able to see your web blog generated](static). But this requires you to manually refresh the web content, let&rsquo;s try hosting web content on GitHub</p>
-<h2 id="host-your-website">Host your website <a href="#host-your-website" class="anchor">🔗</a></h2><p>In this step , You need to use git to do this</p>
-<h4 id="open-git-bash">open <code>Git Bash</code> <a href="#open-git-bash" class="anchor">🔗</a></h4><ul>
-<li>
-<p>设置用户名：git config &ndash;global user.name&quot;用户名&quot;</p>
-</li>
-<li>
-<p>设 置 邮 箱：git config &ndash;global user.email &ldquo;邮箱地址&rdquo;</p>
-</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&gt; git clone &#34;Your repositroy&#39;s URL&#34;  
-</span></span><span style="display:flex;"><span>&gt; ls   
-</span></span><span style="display:flex;"><span>&gt; cd &#34;Your repositroy&#39;s name&#34;  
-</span></span><span style="display:flex;"><span>&gt; cp /public/ .  /&#34;Your repositroy&#39;s name&#34;  
-</span></span><span style="display:flex;"><span>&gt; ### don&#39;t replace README.md  
-</span></span><span style="display:flex;"><span>&gt;   
-</span></span><span style="display:flex;"><span>&gt; git init   
-</span></span><span style="display:flex;"><span>&gt; git add .  
-</span></span><span style="display:flex;"><span>&gt; git commit -m &#34;my first commit&#34;  
-</span></span><span style="display:flex;"><span>&gt; git remote add origin &#34;Your repositroy&#39;s URL&#34;  
-</span></span><span style="display:flex;"><span>&gt; git push -u origin master #/(mian)
-</span></span></code></pre></div><h4 id="open-netlifynetlify">open <a href="netlify">netlify</a> <a href="#open-netlifynetlify" class="anchor">🔗</a></h4><p><code>Add new site</code>&ndash;&gt;<code>Import an existing project</code>&ndash;&gt;choose GitHub&ndash;&gt;selecting your repositroy</p>
-<h2 id="epilogue">Epilogue <a href="#epilogue" class="anchor">🔗</a></h2><p>The construction of a blog seems very simple, but we can see a lot of things from it. Its function is simply to give you a rigid website to record learning and memories, and it also reflects your growth. You should fill your blog including your life with efforts and sweat</p>
-<hr>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span> <span style="color:#666">&lt;</span>u<span style="color:#666">&gt;</span>[netlify]<span style="color:#666">:</span>app.netlify.com<span style="color:#666">&lt;</span>u<span style="color:#666">&gt;</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">&lt;</span>u<span style="color:#666">&gt;</span>[URL]<span style="color:#666">:</span><span style="">`</span>open repository<span style="">`</span><span style="color:#666">--&gt;</span><span style="">`</span>code<span style="">`</span><span style="color:#666">--&gt;</span><span style="">&#39;</span>HTTPS<span style="">&#39;</span><span style="color:#666">&lt;</span>u<span style="color:#666">&gt;</span>
-</span></span><span style="display:flex;"><span> <span style="color:#666">&lt;</span>u<span style="color:#666">&gt;</span>[<span style="color:#a2f;font-weight:bold">static</span>]<span style="color:#666">:</span><span style="">`</span>open netlify website<span style="">`</span><span style="color:#666">--&gt;</span> <span style="">`</span>Add new site<span style="">`</span><span style="color:#666">--&gt;</span><span style="">`</span>Deploy manually<span style="">`</span> just wait a few minutes<span style="color:#666">&lt;</span>u<span style="color:#666">&gt;</span>
-</span></span></code></pre></div><hr>
+<section id="archive">
+    
+        <div class="group">
+            <h3 class="key">
+                2022
+            </h3>
 
-    </div>
+            
+                <div class="value">
+                  <div class="date">
+                    <time datetime="2022-11-21 11:51:53 &#43;0800 CST">Nov 21</time>
+                  </div>
+                  <div class="title">
+                      <a href="https://example.com/posts/blog-website-construction/">
+                          Blog Website Construction
+                      </a>
 
+                      
+                          <div class="tags">
+                              
+                                  <a href="https://example.com/tags/blog">Blog</a>
+                              
+                                  <a href="https://example.com/tags/css">css</a>
+                              
+                                  <a href="https://example.com/tags/html">html</a>
+                              
+                          </div>
+                      
+                  </div>
+                </div>
+                      
+        </div>
     
+        <div class="group">
+            <h3 class="key">
+                2020
+            </h3>
+
+            
+                <div class="value">
+                  <div class="date">
+                    <time datetime="2020-12-01 21:13:14 -0500 -0500">Dec 1</time>
+                  </div>
+                  <div class="title">
+                      <a href="https://example.com/posts/hello-r-markdown/">
+                          Hello R Markdown
+                      </a>
+
+                      
+                          <div class="tags">
+                              
+                                  <a href="https://example.com/tags/r-markdown">R Markdown</a>
+                              
+                                  <a href="https://example.com/tags/plot">plot</a>
+                              
+                                  <a href="https://example.com/tags/regression">regression</a>
+                              
+                          </div>
+                      
+                  </div>
+                </div>
+                      
+        </div>
     
+        <div class="group">
+            <h3 class="key">
+                2019
+            </h3>
+
+            
+                <div class="value">
+                  <div class="date">
+                    <time datetime="2019-03-11 00:00:00 &#43;0000 UTC">Mar 11</time>
+                  </div>
+                  <div class="title">
+                      <a href="https://example.com/posts/markdown-syntax-guide/">
+                          Markdown Syntax Guide
+                      </a>
+
+                      
+                          <div class="tags">
+                              
+                                  <a href="https://example.com/tags/markdown">markdown</a>
+                              
+                                  <a href="https://example.com/tags/css">css</a>
+                              
+                                  <a href="https://example.com/tags/html">html</a>
+                              
+                          </div>
+                      
+                  </div>
+                </div>
+                      
+        </div>
     
-  <div id="comment">
-    
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "your-disqus-shortname" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-  </div>
 
 
 </section>
+
 
 
     </main>
