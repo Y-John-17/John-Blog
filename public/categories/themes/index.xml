@@ -6,16 +6,7 @@
     <description>Recent content in themes on Hugo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Nov 2022 21:41:34 +0800</lastBuildDate><atom:link href="https://example.com/categories/themes/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Blog Website Construction</title>
-      <link>https://example.com/posts/blog-website-construction/</link>
-      <pubDate>Sun, 20 Nov 2022 21:41:34 +0800</pubDate>
-      
-      <guid>https://example.com/posts/blog-website-construction/</guid>
-      <description>Personal Blog Building 🔗 brief introduction hugo : The blog generation framework used in this article github : Blog dynamic remote storage warehouse (realize web page dynamic refresh) netlify : Web hosting (Publication of web pages) Git: Complete the remote warehouse download and push tool environment construction 🔗 R compiled language Choose a close mirror image Select an installation package for your operating system , and performing the installation R</description>
-    </item>
-    
+    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/themes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Markdown Syntax Guide</title>
       <link>https://example.com/posts/markdown-syntax-guide/</link>
