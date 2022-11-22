@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>novel on Hugo</title>
+    <link>https://example.com/tags/novel/</link>
+    <description>Recent content in novel on Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Nov 2022 20:30:31 +0800</lastBuildDate><atom:link href="https://example.com/tags/novel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>苏东坡传</title>
+      <link>https://example.com/posts/%E8%8B%8F%E4%B8%9C%E5%9D%A1%E4%BC%A0/</link>
+      <pubDate>Tue, 22 Nov 2022 20:30:31 +0800</pubDate>
+      
+      <guid>https://example.com/posts/%E8%8B%8F%E4%B8%9C%E5%9D%A1%E4%BC%A0/</guid>
+      <description>《苏东坡传》作者：林语堂 🔗【内容简介】 🔗由一般世俗的看法衡量，苏东坡毕生坎坷多好。有一次，孔子的弟子问伯夷叔齐二大先贤，他二人不食周粟，饿死</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -2,6 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://example.com/tags/biography/</loc>
+    <lastmod>2022-11-22T20:30:31+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/</loc>
+    <lastmod>2022-11-22T20:30:31+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/tags/literature/</loc>
+    <lastmod>2022-11-22T20:30:31+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/tags/novel/</loc>
+    <lastmod>2022-11-22T20:30:31+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/posts/</loc>
+    <lastmod>2022-11-22T20:30:31+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/tags/</loc>
+    <lastmod>2022-11-22T20:30:31+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/posts/%E8%8B%8F%E4%B8%9C%E5%9D%A1%E4%BC%A0/</loc>
+    <lastmod>2022-11-22T20:30:31+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/tags/git/</loc>
+    <lastmod>2022-11-22T20:30:01+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/tags/hugo/</loc>
+    <lastmod>2022-11-22T20:30:01+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/tags/liunx/</loc>
+    <lastmod>2022-11-22T20:30:01+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/posts/liunx%E4%B8%8B%E5%AE%89%E8%A3%85git%E5%92%8Chugo/</loc>
+    <lastmod>2022-11-22T20:30:01+08:00</lastmod>
+  </url><url>
     <loc>https://example.com/tags/distributed-system/</loc>
     <lastmod>2022-11-22T20:14:57+08:00</lastmod>
   </url><url>
@@ -9,15 +42,6 @@
     <lastmod>2022-11-22T20:14:57+08:00</lastmod>
   </url><url>
     <loc>https://example.com/posts/hadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2022-11-22T20:14:57+08:00</lastmod>
-  </url><url>
-    <loc>https://example.com/</loc>
-    <lastmod>2022-11-22T20:14:57+08:00</lastmod>
-  </url><url>
-    <loc>https://example.com/posts/</loc>
-    <lastmod>2022-11-22T20:14:57+08:00</lastmod>
-  </url><url>
-    <loc>https://example.com/tags/</loc>
     <lastmod>2022-11-22T20:14:57+08:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/blog/</loc>

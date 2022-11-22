@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo</title>
+    <link>https://example.com/tags/hugo/</link>
+    <description>Recent content on Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Nov 2022 20:30:01 +0800</lastBuildDate><atom:link href="https://example.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Liunx下安装Git和Hugo</title>
+      <link>https://example.com/posts/liunx%E4%B8%8B%E5%AE%89%E8%A3%85git%E5%92%8Chugo/</link>
+      <pubDate>Tue, 22 Nov 2022 20:30:01 +0800</pubDate>
+      
+      <guid>https://example.com/posts/liunx%E4%B8%8B%E5%AE%89%E8%A3%85git%E5%92%8Chugo/</guid>
+      <description>Liunx下安装 Git 和 Hugo 🔗1.安装git 🔗&amp;gt; yum install git &amp;gt; git # 查看是否安装成功 &amp;gt; git config --global user.name &amp;#34;你的昵称&amp;#34; &amp;gt; git config --global user.email &amp;#34;你的邮</description>
+    </item>
+    
+  </channel>
+</rss>

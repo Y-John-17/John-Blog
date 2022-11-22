@@ -6,7 +6,25 @@
     <description>Recent content in Posts on Hugo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Nov 2022 20:14:57 +0800</lastBuildDate><atom:link href="https://example.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Nov 2022 20:30:31 +0800</lastBuildDate><atom:link href="https://example.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>苏东坡传</title>
+      <link>https://example.com/posts/%E8%8B%8F%E4%B8%9C%E5%9D%A1%E4%BC%A0/</link>
+      <pubDate>Tue, 22 Nov 2022 20:30:31 +0800</pubDate>
+      
+      <guid>https://example.com/posts/%E8%8B%8F%E4%B8%9C%E5%9D%A1%E4%BC%A0/</guid>
+      <description>《苏东坡传》作者：林语堂 🔗【内容简介】 🔗由一般世俗的看法衡量，苏东坡毕生坎坷多好。有一次，孔子的弟子问伯夷叔齐二大先贤，他二人不食周粟，饿死</description>
+    </item>
+    
+    <item>
+      <title>Liunx下安装Git和Hugo</title>
+      <link>https://example.com/posts/liunx%E4%B8%8B%E5%AE%89%E8%A3%85git%E5%92%8Chugo/</link>
+      <pubDate>Tue, 22 Nov 2022 20:30:01 +0800</pubDate>
+      
+      <guid>https://example.com/posts/liunx%E4%B8%8B%E5%AE%89%E8%A3%85git%E5%92%8Chugo/</guid>
+      <description>Liunx下安装 Git 和 Hugo 🔗1.安装git 🔗&amp;gt; yum install git &amp;gt; git # 查看是否安装成功 &amp;gt; git config --global user.name &amp;#34;你的昵称&amp;#34; &amp;gt; git config --global user.email &amp;#34;你的邮</description>
+    </item>
+    
     <item>
       <title>Hadoop完全分布式搭建</title>
       <link>https://example.com/posts/hadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</link>
