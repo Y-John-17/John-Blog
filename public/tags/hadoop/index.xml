@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hadoop on Hugo</title>
+    <link>https://example.com/tags/hadoop/</link>
+    <description>Recent content in Hadoop on Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Nov 2022 20:14:57 +0800</lastBuildDate><atom:link href="https://example.com/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hadoop完全分布式搭建</title>
+      <link>https://example.com/posts/hadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Tue, 22 Nov 2022 20:14:57 +0800</pubDate>
+      
+      <guid>https://example.com/posts/hadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</guid>
+      <description>Hadoop-3.1.4 完全分布式集群搭建 🔗 Hadoop是一个由Apache基金会所开发的分布式系统基础架构。用户可以在不了解分布式底层细节的情况下，开发分布式程</description>
+    </item>
+    
+  </channel>
+</rss>

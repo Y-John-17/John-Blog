@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Hadoop完全分布式搭建 | Hugo</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="Hadoop-3.1.4 完全分布式集群搭建 🔗 Hadoop是一个由Apache基金会所开发的分布式系统基础架构。用户可以在不了解分布式底层细节的情况下，开发分布式程">
+<meta name="generator" content="Hugo 0.106.0">
+
+
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+ 
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'your-google-analytics-id', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+    <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
+	
+	<a href="/posts">Archive</a>
+	<a href="/tags">Tags</a>
+	<a href="/about">About</a>
+
+	
+
+	
+	  <a class="button" href="https://example.com/index.xml">Subscribe</a>
+	
+</nav>
+
+
+    <main class="main">
+      
+
+<section id="single">
+    <h1 class="title">Hadoop完全分布式搭建</h1>
+
+    <div class="tip">
+        <time datetime="2022-11-22 20:14:57 &#43;0800 CST">Nov 22, 2022</time>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          2326 words
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          5 minute read
+        </span>
+    </div>
+
+    
+    
+        
+  
+    <aside class="toc">
+      <details>
+          <summary>Table of Contents
+          </summary>
+          <div>
+              <nav id="TableOfContents">
+  <ul>
+    <li><a href="#虚拟机安装和网卡启用">虚拟机安装和网卡启用</a></li>
+    <li><a href="#java-环境部署">JAVA 环境部署</a></li>
+    <li><a href="#hadoop安装和配置">Hadoop安装和配置</a>
+      <ul>
+        <li><a href="#安装部署">安装部署</a></li>
+        <li><a href="#hadoop集群配置">Hadoop集群配置</a></li>
+        <li><a href="#克隆虚拟机">克隆虚拟机</a></li>
+        <li><a href="#配置免密登录">配置免密登录</a></li>
+        <li><a href="#格式化hadoop">格式化Hadoop</a></li>
+      </ul>
+    </li>
+    <li><a href="#hadoop-314--yarn环境搭建">Hadoop-3.1.4  Yarn环境搭建</a></li>
+  </ul>
+</nav>
+          </div>
+      </details>
+    </aside>
+  
+
+
+    
+
+
+    <div class="content">
+      <h1 id="hadoop-314-完全分布式集群搭建">Hadoop-3.1.4 完全分布式集群搭建 <a href="#hadoop-314-%e5%ae%8c%e5%85%a8%e5%88%86%e5%b8%83%e5%bc%8f%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba" class="anchor">🔗</a></h1><blockquote>
+<p>Hadoop是一个由Apache基金会所开发的分布式系统基础架构。用户可以在不了解分布式底层细节的情况下，开发分布式程序。充分利用集群的威力进行高速运算和存储。Hadoop实现了一个分布式文件系统（ Distributed File System），其中一个组件是HDFS（Hadoop Distributed File System）。HDFS有高容错性的特点，并且设计用来部署在低廉的（low-cost）硬件上；而且它提供高吞吐量（high throughput）来访问应用程序的数据，适合那些有着超大数据集（large data set）的应用程序。HDFS放宽了（relax）POSIX的要求，可以以流的形式访问（streaming access）文件系统中的数据。Hadoop的框架最核心的设计就是：HDFS和MapReduce。HDFS为海量的数据提供了存储，而MapReduce则为海量的数据提供了计算。</p>
+</blockquote>
+<h2 id="虚拟机安装和网卡启用">虚拟机安装和网卡启用 <a href="#%e8%99%9a%e6%8b%9f%e6%9c%ba%e5%ae%89%e8%a3%85%e5%92%8c%e7%bd%91%e5%8d%a1%e5%90%af%e7%94%a8" class="anchor">🔗</a></h2><ul>
+<li>
+<p>虚拟机安装过程掠过，自行百度查阅了解</p>
+</li>
+<li>
+<p>本文所采用的虚拟机版本为 cetos7</p>
+</li>
+<li>
+<p>IP地址的设置要确保和你的虚拟网卡网络地址网段相同</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">主机名</th>
+<th style="text-align:center">IP地址</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">node1</td>
+<td style="text-align:center">192.168.153.151</td>
+<td style="text-align:center">主节点，数据节点</td>
+</tr>
+<tr>
+<td style="text-align:center">node2</td>
+<td style="text-align:center">192.168.153.152</td>
+<td style="text-align:center">副节点，数据节点</td>
+</tr>
+<tr>
+<td style="text-align:center">node3</td>
+<td style="text-align:center">192.168.153.153</td>
+<td style="text-align:center">数据节点</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<p><strong>启用网卡</strong></p>
+<ul>
+<li><code>vi /etc/sysconfig/networscripts/ifcfg-ens33</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>ONBOOT <span style="color:#666">=</span> yes
+</span></span><span style="display:flex;"><span>DNS1 <span style="color:#666">=</span> 8<span style="color:#666">.</span><span style="color:#b44">8</span><span style="color:#666">.</span><span style="color:#b44">8</span><span style="color:#666">.</span><span style="color:#b44">8</span>
+</span></span></code></pre></div><ul>
+<li><code>ping baidu.com</code>     # ping通即可</li>
+</ul>
+<p><strong>主机名和IP地址映射</strong></p>
+<ul>
+<li>在原有文件下添加如下字段</li>
+<li><code>vim /etc/hosts</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>192<span style="color:#666">.</span><span style="color:#b44">168</span><span style="color:#666">.</span><span style="color:#b44">153</span><span style="color:#666">.</span><span style="color:#b44">151</span> node1
+</span></span><span style="display:flex;"><span>192<span style="color:#666">.</span><span style="color:#b44">168</span><span style="color:#666">.</span><span style="color:#b44">153</span><span style="color:#666">.</span><span style="color:#b44">152</span> node2
+</span></span><span style="display:flex;"><span>192<span style="color:#666">.</span><span style="color:#b44">168</span><span style="color:#666">.</span><span style="color:#b44">153</span><span style="color:#666">.</span><span style="color:#b44">153</span> node3
+</span></span></code></pre></div><h2 id="java-环境部署">JAVA 环境部署 <a href="#java-%e7%8e%af%e5%a2%83%e9%83%a8%e7%bd%b2" class="anchor">🔗</a></h2><ul>
+<li>
+<p>Hadoop的创始人是Doug Cutting， 同时也是著名的基于Java的检索引擎库Apache Lucene的创始人。Hadoop本来是用于著名的开源搜索引擎Apache Nutch，而Nutch本身是基于Lucene的，而且也是Lucene的一个子项目。因此Hadoop基于Java就很理所当然了，所以，Hadoop是由Java编写的。</p>
+</li>
+<li>
+<p>Hadoop采用Java编写，因而Hadoop天生支持Java语言编写作业，但在实际应用中，有时候，因要用到非Java的第三方库或者其他原因，要采用C/C++或者其他语言编写MapReduce作业，这时候可能要用到Hadoop提供的一些工具。</p>
+</li>
+<li>
+<p>如果你要用C/C++编写MpaReduce作业，可使用的工具有Hadoop Streaming或者Hadoop Pipes。</p>
+</li>
+<li>
+<p>如果你要用Python编写MapReduce作业，可以使用Hadoop Streaming或者Pydoop。</p>
+</li>
+<li>
+<p>如果你要使用其他语言，如shell，php，ruby等，可使用Hadoop Streaming。</p>
+</li>
+</ul>
+<p><strong>安装</strong></p>
+<ul>
+<li>进入/opt路径创建并进入/software，将<code>jdk-8u281-linux-x64.rpm</code>文件上传到/opt/software</li>
+<li><code>cd /opt</code></li>
+<li><code>mkdir software</code></li>
+<li><code>cd software</code></li>
+<li><code>rpm -ivh jdk-8u281-linux-x64.rpm</code></li>
+</ul>
+<p><strong>配置环境变量</strong></p>
+<ul>
+<li>设置用户环境变量<code>vim ~/.bash_profile</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>export JAVA_HOME<span style="color:#666">=/</span>usr<span style="color:#666">/</span>java<span style="color:#666">/</span>jdk1<span style="color:#666">.</span><span style="color:#b44">8</span><span style="color:#666">.</span><span style="color:#b44">0_261</span><span style="color:#666">-</span>amd64
+</span></span><span style="display:flex;"><span>PATH<span style="color:#666">=</span>$PATH<span style="color:#666">:</span>$HOME<span style="color:#666">/</span>bin<span style="color:#666">:</span>$JAVA_HOME<span style="color:#666">/</span>bin
+</span></span><span style="display:flex;"><span>export PATH
+</span></span></code></pre></div><ul>
+<li>查看安装是否成功，<code>java -version</code>，出现<code>Java</code>版本即代表安装成功</li>
+</ul>
+<h2 id="hadoop安装和配置">Hadoop安装和配置 <a href="#hadoop%e5%ae%89%e8%a3%85%e5%92%8c%e9%85%8d%e7%bd%ae" class="anchor">🔗</a></h2><h3 id="安装部署">安装部署 <a href="#%e5%ae%89%e8%a3%85%e9%83%a8%e7%bd%b2" class="anchor">🔗</a></h3><ul>
+<li>将<code>hadoop-3.1.4.tar.gz</code>文件包上传到<code>/opt/software</code></li>
+<li>执行如下操作：</li>
+<li><code>cd /opt/software</code></li>
+<li><code>tar -zxvf hadoop-3.1.4.tar.gz</code></li>
+<li>添加环境变量</li>
+<li><code>vim ~/.bash_profile</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>JAVA_HOME<span style="color:#666">=/</span>usr<span style="color:#666">/</span>java<span style="color:#666">/</span>jdk1<span style="color:#666">.</span><span style="color:#b44">8</span><span style="color:#666">.</span><span style="color:#b44">0_261</span><span style="color:#666">-</span>amd64
+</span></span><span style="display:flex;"><span>HADOOP_HOME<span style="color:#666">=/</span>opt<span style="color:#666">/</span>software<span style="color:#666">/</span>hadoop<span style="color:#666">-</span>3<span style="color:#666">.</span><span style="color:#b44">1</span><span style="color:#666">.</span><span style="color:#b44">4</span>
+</span></span><span style="display:flex;"><span>PATH<span style="color:#666">=</span>$PATH<span style="color:#666">:</span>$HOME<span style="color:#666">/</span>bin<span style="color:#666">:</span>$JAVA_HOME<span style="color:#666">/</span>bin<span style="color:#666">:</span>$HADOOP_HOME<span style="color:#666">/</span>bin<span style="color:#666">:</span>$HADOOP_HOME<span style="color:#666">/</span>sbin
+</span></span><span style="display:flex;"><span>export PATH
+</span></span></code></pre></div><ul>
+<li>查看是否安装成功<code>hadoop --version</code>，出现版本号即代表成功</li>
+</ul>
+<h3 id="hadoop集群配置">Hadoop集群配置 <a href="#hadoop%e9%9b%86%e7%be%a4%e9%85%8d%e7%bd%ae" class="anchor">🔗</a></h3><ul>
+<li>在每台主机下修改,进入如下目录，一共修改四个文件</li>
+<li><code>cd /opt/software/hadoop-3.1.4/etc/hadoop</code></li>
+</ul>
+<p><strong>hadoop-env.sh</strong></p>
+<ul>
+<li>添加本机Java环境路径，删除<code>export JAVA_HOME=</code>后面的路径配置，修改为如下内容，并保存退出</li>
+<li>修改指定操作进程的用户为root，在文件里找不到，就加在文件的最后</li>
+<li>查找命令：按Esc后键入查找内容</li>
+<li><code>vim hadoop-env.sh</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>export JAVA_HOME <span style="color:#666">=</span> <span style="color:#666">/</span>usr<span style="color:#666">/</span>java<span style="color:#666">/</span>jdk1<span style="color:#666">.</span><span style="color:#b44">8</span><span style="color:#666">.</span><span style="color:#b44">0_261</span><span style="color:#666">-</span>amd64
+</span></span><span style="display:flex;"><span>export HDFS_NAMENODE_USER<span style="color:#666">=</span>root
+</span></span><span style="display:flex;"><span>export HDFS_DATANODE_USER<span style="color:#666">=</span>root
+</span></span><span style="display:flex;"><span>export HDFS_SECONDARYNAMENODE_USER<span style="color:#666">=</span>root
+</span></span></code></pre></div><p><strong>core-site.xml</strong></p>
+<ul>
+<li>配置core-site.xml文件，在configuration标签加入下面配置，指定NameNode所在节点和配置元数据存放位置</li>
+<li><code>vim core-site.xml</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#666">&lt;</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>name<span style="color:#666">&gt;</span>fs<span style="color:#666">.</span><span style="color:#b44">defaultFS</span><span style="color:#666">&lt;/</span>name<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>value<span style="color:#666">&gt;</span>hdfs<span style="color:#666">:</span><span style="color:#080;font-style:italic">//node1:9820&lt;/value&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#666">&lt;/</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;!--</span> 指定Hadoop运行时产生文件的存储目录 <span style="color:#666">--&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>name<span style="color:#666">&gt;</span>hadoop<span style="color:#666">.</span><span style="color:#b44">tmp</span><span style="color:#666">.</span><span style="color:#b44">dir</span><span style="color:#666">&lt;/</span>name<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>value<span style="color:#666">&gt;/</span>opt<span style="color:#666">/</span>hadoopdata<span style="color:#666">&lt;/</span>value<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;/</span>property<span style="color:#666">&gt;</span>
+</span></span></code></pre></div><p><strong>hdfs-site.xml</strong></p>
+<ul>
+<li>在hdfs-site.xml文件的configuration标签加入Secondary NameNode的节点配置</li>
+<li><code>vim hdfs-site.xml</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#666">&lt;</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>name<span style="color:#666">&gt;</span>dfs<span style="color:#666">.</span><span style="color:#b44">namenode</span><span style="color:#666">.</span><span style="color:#b44">secondary</span><span style="color:#666">.</span><span style="color:#b44">http</span><span style="color:#666">-</span>address<span style="color:#666">&lt;/</span>name<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>value<span style="color:#666">&gt;</span>node2<span style="color:#666">:</span>9868<span style="color:#666">&lt;/</span>value<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;/</span>property<span style="color:#666">&gt;</span>
+</span></span></code></pre></div><p><strong>workers</strong></p>
+<ul>
+<li>在workers文件中配置DataNode节点</li>
+<li><code>vim works</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>node1
+</span></span><span style="display:flex;"><span>node2
+</span></span><span style="display:flex;"><span>node3
+</span></span></code></pre></div><h3 id="克隆虚拟机">克隆虚拟机 <a href="#%e5%85%8b%e9%9a%86%e8%99%9a%e6%8b%9f%e6%9c%ba" class="anchor">🔗</a></h3><ul>
+<li>选择完整克隆，并对虚拟机相关配置做如下修改</li>
+</ul>
+<p><strong>配置固定IP地址</strong></p>
+<ul>
+<li>修改或添加如下内容</li>
+<li><code>vi  /etc/sysconfig/network-scripts/ifcfg-ens33</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>ONBOOT <span style="color:#666">=</span> yes
+</span></span><span style="display:flex;"><span>BOOTPROTO <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">static</span>
+</span></span><span style="display:flex;"><span>IPADDR <span style="color:#666">=</span> 192<span style="color:#666">.</span><span style="color:#b44">168</span><span style="color:#666">.</span><span style="color:#b44">153</span><span style="color:#666">.</span><span style="color:#b44">151</span>  <span style="">#</span> 具体根据主机配置IP<span style="color:#666">(</span>152<span style="color:#666">/</span>153<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span>GATEWAY <span style="color:#666">=</span> 192<span style="color:#666">.</span><span style="color:#b44">168</span><span style="color:#666">.</span><span style="color:#b44">153</span><span style="color:#666">.</span><span style="color:#b44">2</span>
+</span></span><span style="display:flex;"><span>NETMASK <span style="color:#666">=</span> 255<span style="color:#666">.</span><span style="color:#b44">255</span><span style="color:#666">.</span><span style="color:#b44">255</span><span style="color:#666">.</span><span style="color:#b44">0</span>
+</span></span><span style="display:flex;"><span>DNS1 <span style="color:#666">=</span> 8<span style="color:#666">.</span><span style="color:#b44">8</span><span style="color:#666">.</span><span style="color:#b44">8</span><span style="color:#666">.</span><span style="color:#b44">8</span>
+</span></span><span style="display:flex;"><span>DNS2 <span style="color:#666">=</span> 192<span style="color:#666">.</span><span style="color:#b44">168</span><span style="color:#666">.</span><span style="color:#b44">153</span><span style="color:#666">.</span><span style="color:#b44">2</span>
+</span></span></code></pre></div><p><code>service network restart</code>  #替代命令，三者等效<code>systemctl restart netwrok</code> <code>reboot</code>
+<code>ping baidu.com</code>           # ping通即可</p>
+<p><strong>修改主机名</strong></p>
+<ul>
+<li>删除localhost，修改内容如下</li>
+<li><code>vi /etc/hostname</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>node1   <span style="">#</span><span style="color:#666">(</span>node2<span style="color:#666">/</span>node3<span style="color:#666">)</span>
+</span></span></code></pre></div><p><strong>重启虚拟机</strong></p>
+<ul>
+<li>重启虚拟机，让其配置生效</li>
+<li><code>reboot</code>或者<code>init 6</code></li>
+</ul>
+<h3 id="配置免密登录">配置免密登录 <a href="#%e9%85%8d%e7%bd%ae%e5%85%8d%e5%af%86%e7%99%bb%e5%bd%95" class="anchor">🔗</a></h3><ul>
+<li>在每台机器下都执行下面操作</li>
+<li>生成公钥：<code>ssh-keygen</code>，执行完会在当前目录下生成一个.ssh文件夹，文件夹里面有id_rsa和id_rsa.pub文件</li>
+<li><code>ll -all</code></li>
+<li>把公钥文件复制到node1,node2,node3节点上，执行下面3条命令</li>
+<li><code>ssh-copy-id -i ./id_rsa.pub root@node1</code></li>
+<li><code>ssh-copy-id -i ./id_rsa.pub root@node2</code></li>
+<li><code>ssh-copy-id -i ./id_rsa.pub root@node3</code></li>
+</ul>
+<h3 id="格式化hadoop">格式化Hadoop <a href="#%e6%a0%bc%e5%bc%8f%e5%8c%96hadoop" class="anchor">🔗</a></h3><ul>
+<li>格式化操作只需执行一次，在主节点下执行如下命令</li>
+<li><code>hdfs namenode -format</code></li>
+<li>配置过环境变量，可执行<code>start-all.sh</code>启动集群（该命令执行时会报错，但不影响节点启动）</li>
+<li>使用<code>jps</code>命令查看Hadoop守护进程</li>
+</ul>
+<blockquote>
+<p>监听端口<code>192.168.153.151:9870</code>和<code>192.168.153.151:8088</code></p>
+</blockquote>
+<p>node1（主节点）</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>NameNode
+</span></span><span style="display:flex;"><span>DataNode
+</span></span><span style="display:flex;"><span>Jps
+</span></span></code></pre></div><p>node2</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>DataNode
+</span></span><span style="display:flex;"><span>SecondaryNameNode
+</span></span><span style="display:flex;"><span>Jps
+</span></span></code></pre></div><p>node3</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>DataNode
+</span></span><span style="display:flex;"><span>Jps
+</span></span></code></pre></div><h2 id="hadoop-314--yarn环境搭建">Hadoop-3.1.4  Yarn环境搭建 <a href="#hadoop-314--yarn%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba" class="anchor">🔗</a></h2><ul>
+<li>进入<code>/opt/software/hadoop-3.1.4/etc/hadoop</code> 目录</li>
+</ul>
+<p><strong>mapred-site.xml</strong></p>
+<ul>
+<li><code>vim mapred-site.xml</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#666">&lt;</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">&lt;</span>name<span style="color:#666">&gt;</span>mapreduce<span style="color:#666">.</span><span style="color:#b44">framework</span><span style="color:#666">.</span><span style="color:#b44">name</span><span style="color:#666">&lt;/</span>name<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#666">&lt;</span>value<span style="color:#666">&gt;</span>yarn<span style="color:#666">&lt;/</span>value<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;/</span>property<span style="color:#666">&gt;</span>
+</span></span></code></pre></div><p><strong>yarn-site.xml</strong></p>
+<ul>
+<li><code>vim  yarn-site.xml</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#666">&lt;</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>name<span style="color:#666">&gt;</span>yarn<span style="color:#666">.</span><span style="color:#b44">nodemanager</span><span style="color:#666">.</span><span style="color:#b44">aux</span><span style="color:#666">-</span>services<span style="color:#666">&lt;/</span>name<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>value<span style="color:#666">&gt;</span>mapreduce_shuffle<span style="color:#666">&lt;/</span>value<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;/</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>name<span style="color:#666">&gt;</span>yarn<span style="color:#666">.</span><span style="color:#b44">resourcemanager</span><span style="color:#666">.</span><span style="color:#b44">resource</span><span style="color:#666">-</span>tracker<span style="color:#666">.</span><span style="color:#b44">address</span><span style="color:#666">&lt;/</span>name<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>value<span style="color:#666">&gt;</span>192<span style="color:#666">.</span><span style="color:#b44">168</span><span style="color:#666">.</span><span style="color:#b44">153</span><span style="color:#666">.</span><span style="color:#b44">151</span><span style="color:#666">:</span>8031<span style="color:#666">&lt;/</span>value<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;/</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>name<span style="color:#666">&gt;</span>yarn<span style="color:#666">.</span><span style="color:#b44">resourcemanager</span><span style="color:#666">.</span><span style="color:#b44">address</span><span style="color:#666">&lt;/</span>name<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>value<span style="color:#666">&gt;</span>192<span style="color:#666">.</span><span style="color:#b44">168</span><span style="color:#666">.</span><span style="color:#b44">153</span><span style="color:#666">.</span><span style="color:#b44">151</span><span style="color:#666">:</span>8032<span style="color:#666">&lt;/</span>value<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;/</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>name<span style="color:#666">&gt;</span>yarn<span style="color:#666">.</span><span style="color:#b44">resourcemanager</span><span style="color:#666">.</span><span style="color:#b44">scheduler</span><span style="color:#666">.</span><span style="color:#b44">address</span><span style="color:#666">&lt;/</span>name<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>value<span style="color:#666">&gt;</span>192<span style="color:#666">.</span><span style="color:#b44">168</span><span style="color:#666">.</span><span style="color:#b44">153</span><span style="color:#666">.</span><span style="color:#b44">151</span><span style="color:#666">:</span>8034<span style="color:#666">&lt;/</span>value<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;/</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>name<span style="color:#666">&gt;</span>yarn<span style="color:#666">.</span><span style="color:#b44">resourcemanager</span><span style="color:#666">.</span><span style="color:#b44">webapp</span><span style="color:#666">.</span><span style="color:#b44">address</span><span style="color:#666">&lt;/</span>name<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>value<span style="color:#666">&gt;</span>192<span style="color:#666">.</span><span style="color:#b44">168</span><span style="color:#666">.</span><span style="color:#b44">153</span><span style="color:#666">.</span><span style="color:#b44">151</span><span style="color:#666">:</span>8088<span style="color:#666">&lt;/</span>value<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;/</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>name<span style="color:#666">&gt;</span>yarn<span style="color:#666">.</span><span style="color:#b44">log</span><span style="color:#666">-</span>aggregation<span style="color:#666">-</span>enable<span style="color:#666">&lt;/</span>name<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>value<span style="color:#666">&gt;</span><span style="color:#a2f;font-weight:bold">true</span><span style="color:#666">&lt;/</span>value<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;/</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#666">&lt;</span>property<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>name<span style="color:#666">&gt;</span>yarn<span style="color:#666">.</span><span style="color:#b44">log</span><span style="color:#666">.</span><span style="color:#b44">server</span><span style="color:#666">.</span><span style="color:#b44">url</span><span style="color:#666">&lt;/</span>name<span style="color:#666">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#666">&lt;</span>value<span style="color:#666">&gt;</span>http<span style="color:#666">:</span><span style="color:#080;font-style:italic">//node1:19888/jobhistory/logs/&lt;/value&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span><span style="color:#666">&lt;/</span>property<span style="color:#666">&gt;</span>
+</span></span></code></pre></div><p><strong>将文件发送到子节点</strong>
+<code>scp -r mapred-site.xml root@node2:/opt/software/hadoop-3.1.4/etc/hadoop/</code>
+<code>scp -r mapred-site.xml root@node3:/opt/software/hadoop-3.1.4/etc/hadoop/</code>
+<code>scp -r yarn-site.xml root@node2:/opt/software/hadoop-3.1.4/etc/hadoop/</code>
+<code>scp -r yarn-site.xml root@node3:/opt/software/hadoop-3.1.4/etc/hadoop/</code></p>
+<p><strong>查看是否启动成功</strong></p>
+<ul>
+<li>`start-all.sh</li>
+<li>(1)查看线程是否，一台机器ResourceManager，其他机器有NodeManager</li>
+<li>(2)浏览器输入启动ResourceManager主机的192.168.153.151:8088点击Nodes可以看到NodeManager节点</li>
+</ul>
+<p><strong>node1</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>NodeManager
+</span></span><span style="display:flex;"><span>Jps
+</span></span><span style="display:flex;"><span>JournalNode
+</span></span><span style="display:flex;"><span>DFSZKFailoverController
+</span></span><span style="display:flex;"><span>QuorumPeerMain
+</span></span><span style="display:flex;"><span>ResourceManager
+</span></span><span style="display:flex;"><span>NameNode
+</span></span><span style="display:flex;"><span>DataNode
+</span></span></code></pre></div><p><strong>node2</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>Jps
+</span></span><span style="display:flex;"><span>DataNode
+</span></span><span style="display:flex;"><span>NameNode
+</span></span><span style="display:flex;"><span>QuorumPeerMain
+</span></span><span style="display:flex;"><span>DFSZKFailoverController
+</span></span><span style="display:flex;"><span>JournalNode
+</span></span><span style="display:flex;"><span>NodeManager
+</span></span></code></pre></div><p><strong>node3</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>NodeManager
+</span></span><span style="display:flex;"><span>Jps
+</span></span><span style="display:flex;"><span>QuorumPeerMain
+</span></span><span style="display:flex;"><span>JournalNode
+</span></span><span style="display:flex;"><span>DataNode
+</span></span></code></pre></div>
+    </div>
+
+    
+        <div class="tags">
+            
+                <a href="https://example.com/tags/hadoop">Hadoop</a>
+            
+                <a href="https://example.com/tags/distributed-system">Distributed system</a>
+            
+        </div>
+    
+    
+    
+  <div id="comment">
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "your-disqus-shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+
+
+</section>
+
+
+    </main>
+    
+    <footer id="footer">
+    
+        <div id="social">
+
+
+    <a class="symbol" href="your-github-link" rel="me" target="_blank">
+        
+        <svg fill="#bbbbbb" width="28" height="28"  viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>Github</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Social-Icons---Rounded-Black" transform="translate(-264.000000, -939.000000)">
+            <g id="Github" transform="translate(264.000000, 939.000000)">
+                <path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z" id="Rounded" fill="#bbbbbb"></path>
+                <path d="M35.9985,13 C22.746,13 12,23.7870921 12,37.096644 C12,47.7406712 18.876,56.7718301 28.4145,59.9584121 C29.6145,60.1797862 30.0525,59.4358488 30.0525,58.7973276 C30.0525,58.2250681 30.0315,56.7100863 30.0195,54.6996482 C23.343,56.1558981 21.9345,51.4693938 21.9345,51.4693938 C20.844,48.6864054 19.2705,47.9454799 19.2705,47.9454799 C17.091,46.4500754 19.4355,46.4801943 19.4355,46.4801943 C21.843,46.6503662 23.1105,48.9634994 23.1105,48.9634994 C25.2525,52.6455377 28.728,51.5823398 30.096,50.9649018 C30.3135,49.4077535 30.9345,48.3460615 31.62,47.7436831 C26.2905,47.1352808 20.688,45.0691228 20.688,35.8361671 C20.688,33.2052792 21.6225,31.0547881 23.1585,29.3696344 C22.911,28.7597262 22.0875,26.3110578 23.3925,22.9934585 C23.3925,22.9934585 25.4085,22.3459017 29.9925,25.4632101 C31.908,24.9285993 33.96,24.6620468 36.0015,24.6515052 C38.04,24.6620468 40.0935,24.9285993 42.0105,25.4632101 C46.5915,22.3459017 48.603,22.9934585 48.603,22.9934585 C49.9125,26.3110578 49.089,28.7597262 48.8415,29.3696344 C50.3805,31.0547881 51.309,33.2052792 51.309,35.8361671 C51.309,45.0917119 45.6975,47.1292571 40.3515,47.7256117 C41.2125,48.4695491 41.9805,49.9393525 41.9805,52.1877301 C41.9805,55.4089489 41.9505,58.0067059 41.9505,58.7973276 C41.9505,59.4418726 42.3825,60.1918338 43.6005,59.9554002 C53.13,56.7627944 60,47.7376593 60,37.096644 C60,23.7870921 49.254,13 35.9985,13" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>
+    </a>
+
+    <a class="symbol" href="your-github-link" rel="me" target="_blank">
+        
+        <svg fill="#bbbbbb" width="28" height="28" viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>stackoverflow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Social-Icons---Rounded-Black" transform="translate(-488.000000, -1163.000000)">
+            <g id="stackoverflow" transform="translate(488.000000, 1163.000000)">
+                <path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z" id="Rounded" fill="#bbbbbb"></path>
+                <path d="M42.0860128,53.5922927 L22.9745951,53.6011499 L22.9729497,49.5538824 L42.0835447,49.5440929 L42.0860128,53.5922927 L42.0860128,53.5922927 Z M55,30.6708298 L51.7306912,12 L47.7087256,12.6920259 L50.9775643,31.3628557 L55,30.6708298 L55,30.6708298 Z M42.5455518,44.3547147 L23.5156994,42.616026 L23.1410164,46.6470941 L42.1712214,48.3841513 L42.5455518,44.3547147 L42.5455518,44.3547147 Z M43.8009984,39.0731519 L25.3459811,34.1539179 L24.285633,38.0621508 L42.7419431,42.9819676 L43.8009984,39.0731519 L43.8009984,39.0731519 Z M46.2103463,34.4436411 L29.7494464,24.8164635 L27.6748215,28.3015328 L44.1365441,37.9292931 L46.2103463,34.4436411 L46.2103463,34.4436411 Z M50.2466504,31.6088756 L46.8745036,33.8883189 L36.106599,18.2318456 L39.4792159,15.9517031 L50.2466504,31.6088756 Z M45.3315807,40.2784283 L48.5799693,40.2784283 L48.5799693,60 L17,60 L17,40.2784283 L20.2648427,40.2784283 L20.2648427,56.8243495 L45.3315807,56.8243495 L45.3315807,40.2784283 Z" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>
+    </a>
+
+    <a class="symbol" href="your-github-link" rel="me" target="_blank">
+        
+        <svg fill="#bbbbbb" width="28" height="28" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="438.536px" height="438.536px" viewBox="0 0 438.536 438.536" style="enable-background:new 0 0 438.536 438.536;"
+	 xml:space="preserve">
+<g>
+	<path d="M414.41,24.123C398.333,8.042,378.963,0,356.315,0H82.228C59.58,0,40.21,8.042,24.126,24.123
+		C8.045,40.207,0.003,59.576,0.003,82.225v274.084c0,22.647,8.042,42.018,24.123,58.102c16.084,16.084,35.454,24.126,58.102,24.126
+		h274.084c22.648,0,42.018-8.042,58.095-24.126c16.084-16.084,24.126-35.454,24.126-58.102V82.225
+		C438.532,59.576,430.49,40.204,414.41,24.123z M335.471,168.735c0.191,1.713,0.288,4.278,0.288,7.71
+		c0,15.989-2.334,32.025-6.995,48.104c-4.661,16.087-11.8,31.504-21.416,46.254c-9.606,14.749-21.074,27.791-34.396,39.115
+		c-13.325,11.32-29.311,20.365-47.968,27.117c-18.648,6.762-38.637,10.143-59.953,10.143c-33.116,0-63.76-8.952-91.931-26.836
+		c4.568,0.568,9.329,0.855,14.275,0.855c27.6,0,52.439-8.565,74.519-25.7c-12.941-0.185-24.506-4.179-34.688-11.991
+		c-10.185-7.803-17.273-17.699-21.271-29.691c4.947,0.76,8.658,1.137,11.132,1.137c4.187,0,9.042-0.76,14.56-2.279
+		c-13.894-2.669-25.598-9.562-35.115-20.697c-9.519-11.136-14.277-23.84-14.277-38.114v-0.571
+		c10.085,4.755,19.602,7.229,28.549,7.422c-17.321-11.613-25.981-28.265-25.981-49.963c0-10.66,2.758-20.747,8.278-30.264
+		c15.035,18.464,33.311,33.213,54.816,44.252c21.507,11.038,44.54,17.227,69.092,18.558c-0.95-3.616-1.427-8.186-1.427-13.704
+		c0-16.562,5.853-30.692,17.56-42.399c11.703-11.706,25.837-17.561,42.394-17.561c17.515,0,32.079,6.283,43.688,18.846
+		c13.134-2.474,25.892-7.33,38.26-14.56c-4.757,14.652-13.613,25.788-26.55,33.402c12.368-1.716,23.88-4.95,34.537-9.708
+		C357.458,149.793,347.462,160.166,335.471,168.735z"/>
+</g>
+</svg>
+
+    </a>
+
+
+</div>
+
+    
+
+    <div class="copyright">
+    
+       © Copyright 
+       2022 
+       <span class="split">
+        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
+  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
+</svg>
+       </span>
+       Author
+    
+    </div>
+
+    
+      <div class="powerby">
+        Powered by <a href='http://www.gohugo.io/'>Hugo</a> Theme By <a href='https://github.com/nodejh/hugo-theme-mini'>nodejh</a>
+      </div>
+    
+</footer>
+
+
+
+  </body>
+</html>
