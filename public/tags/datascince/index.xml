@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Datascince on Hugo</title>
+    <link>https://example.com/tags/datascince/</link>
+    <description>Recent content in Datascince on Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Nov 2022 10:51:41 +0800</lastBuildDate><atom:link href="https://example.com/tags/datascince/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MapReduce气温统计实验</title>
+      <link>https://example.com/posts/mapreduce%E6%B0%94%E6%B8%A9%E7%BB%9F%E8%AE%A1%E5%AE%9E%E9%AA%8C/</link>
+      <pubDate>Thu, 24 Nov 2022 10:51:41 +0800</pubDate>
+      
+      <guid>https://example.com/posts/mapreduce%E6%B0%94%E6%B8%A9%E7%BB%9F%E8%AE%A1%E5%AE%9E%E9%AA%8C/</guid>
+      <description>MapReduce气温统计实验 🔗一、数据集准备 🔗数据集下载地址：ftp://ftp.ncdc.noaa.gov/pub/data/uscrn</description>
+    </item>
+    
+  </channel>
+</rss>

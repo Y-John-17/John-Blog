@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <title>Hugo</title>
+    <title>Windows Docker 安装centOS系统 | Hugo</title>
 
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="My Blog">
+<meta name="description" content="windows docker 安装centOS系统 🔗1) 拉取镜像 🔗输入命令docker pull centos:7 从仓库拉取centos7的镜像 2) 查看本地镜像 🔗命令：docker images 可以查看已">
 <meta name="generator" content="Hugo 0.106.0">
 
 
@@ -37,16 +37,13 @@ if (!doNotTrack) {
 
 
 
-  
-    <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Hugo" />
-    <link href="/index.xml" rel="feed" type="application/rss+xml" title="Hugo" />
-  
-
 
   </head>
 
   <body>
     <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
 	
 	<a href="/posts">Archive</a>
 	<a href="/tags">Tags</a>
@@ -62,87 +59,120 @@ if (!doNotTrack) {
 
     <main class="main">
       
-<header class="profile">
-    
-        <img class="avatar" alt="avatar" src="/images/avatar.png" />
-    
 
-    <h1>Hugo</h1>
-    
-    
-      <h2>Software Engineer</h2>
-    
-</header>
+<section id="single">
+    <h1 class="title">Windows Docker 安装centOS系统</h1>
 
-<div id="list-page">
-    
+    <div class="tip">
+        <time datetime="2022-11-24 10:52:34 &#43;0800 CST">Nov 24, 2022</time>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          259 words
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          1 minute read
+        </span>
+    </div>
+
     
     
         
-        
-        <section class="item">
+  
+    <aside class="toc">
+      <details>
+          <summary>Table of Contents
+          </summary>
           <div>
-            <h1 class="title"><a href='/posts/windows-docker-%E5%AE%89%E8%A3%85centos%E7%B3%BB%E7%BB%9F/'>Windows Docker 安装centOS系统</a></h1>
-            <div class ="date">
-                <time datetime="2022-11-24 10:52:34 &#43;0800 CST">Nov 24, 2022</time>  
-            </div>
+              <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1--拉取镜像">1)  拉取镜像</a></li>
+    <li><a href="#2--查看本地镜像">2)  查看本地镜像</a></li>
+    <li><a href="#3--创建并运行容器">3)  创建并运行容器</a></li>
+    <li><a href="#4--进入使用容器">4)  进入使用容器</a></li>
+    <li><a href="#5--安装工具">5)  安装工具</a></li>
+  </ul>
+</nav>
           </div>
+      </details>
+    </aside>
+  
 
-          
-              <div class="summary">windows docker 安装centOS系统 🔗1) 拉取镜像 🔗输入命令docker pull centos:7 从仓库拉取centos7的镜像 2) 查看本地镜像 🔗命令：docker images 可以查看已</div>
-          
-
-        </section>
-    
-        
-        
-        <section class="item">
-          <div>
-            <h1 class="title"><a href='/posts/hadoop%E8%AF%8D%E9%A2%91%E7%BB%9F%E8%AE%A1/'>Hadoop词频统计</a></h1>
-            <div class ="date">
-                <time datetime="2022-11-24 10:51:58 &#43;0800 CST">Nov 24, 2022</time>  
-            </div>
-          </div>
-
-          
-              <div class="summary">Hadoop词频统计 🔗前期准备 🔗 该实验采用Hadoop单分布模式即可满足，需要自己前期搭建 Hadoop守护进程启动 cd ./hadoop/sbin/start-all.sh 查看相关守护进程是否已</div>
-          
-
-        </section>
-    
-        
-        
-        <section class="item">
-          <div>
-            <h1 class="title"><a href='/posts/mapreduce%E6%B0%94%E6%B8%A9%E7%BB%9F%E8%AE%A1%E5%AE%9E%E9%AA%8C/'>MapReduce气温统计实验</a></h1>
-            <div class ="date">
-                <time datetime="2022-11-24 10:51:41 &#43;0800 CST">Nov 24, 2022</time>  
-            </div>
-          </div>
-
-          
-              <div class="summary">MapReduce气温统计实验 🔗一、数据集准备 🔗数据集下载地址：ftp://ftp.ncdc.noaa.gov/pub/data/uscrn</div>
-          
-
-        </section>
-    
 
     
-        <div class="pagination">
-          
-          
-          
-              <span class="next">
-                  <a href="/page/2/">
-                      Older posts <span class="arrow">→</span>
-                  </a>
-              </span>
-          
+
+
+    <div class="content">
+      <h1 id="windows-docker-安装centos系统">windows docker 安装centOS系统 <a href="#windows-docker-%e5%ae%89%e8%a3%85centos%e7%b3%bb%e7%bb%9f" class="anchor">🔗</a></h1><h2 id="1--拉取镜像">1)  拉取镜像 <a href="#1--%e6%8b%89%e5%8f%96%e9%95%9c%e5%83%8f" class="anchor">🔗</a></h2><p>输入命令<code>docker pull centos:7 </code>从仓库拉取centos7的镜像</p>
+<h2 id="2--查看本地镜像">2)  查看本地镜像 <a href="#2--%e6%9f%a5%e7%9c%8b%e6%9c%ac%e5%9c%b0%e9%95%9c%e5%83%8f" class="anchor">🔗</a></h2><p>命令：<code>docker images</code></p>
+<p>可以查看已经把centos的镜像拉取到本地</p>
+<p><p class="markdown-image">
+  <img src="C:%5cUsers%5cJohn%5cDesktop%5cblog%5cJohn-Blog%5ccontent%5cimage%5cwindows-docker-%e5%ae%89%e8%a3%85centOS%e7%b3%bb%e7%bb%9f%5c1.jpeg" alt="1"  />
+</p></p>
+<h2 id="3--创建并运行容器">3)  创建并运行容器 <a href="#3--%e5%88%9b%e5%bb%ba%e5%b9%b6%e8%bf%90%e8%a1%8c%e5%ae%b9%e5%99%a8" class="anchor">🔗</a></h2><p>命令：<code>docker run -d -i -t 470671670cac /bin/bash</code></p>
+<p>命令格式：<code>docker run -d -i -t &lt;IMAGE ID&gt; /bin/bash</code></p>
+<p>执行完命令后，在命令下方会出现容器ID。</p>
+<p><p class="markdown-image">
+  <img src="C:%5cUsers%5cJohn%5cDesktop%5cblog%5cJohn-Blog%5ccontent%5cimage%5cwindows-docker-%e5%ae%89%e8%a3%85centOS%e7%b3%bb%e7%bb%9f%5c2.jpeg" alt="2"  />
+</p></p>
+<h2 id="4--进入使用容器">4)  进入使用容器 <a href="#4--%e8%bf%9b%e5%85%a5%e4%bd%bf%e7%94%a8%e5%ae%b9%e5%99%a8" class="anchor">🔗</a></h2><p>命令：<code>docker exec -it 82d5f bash</code></p>
+<p>在此处容器的ID只输入前5位，系统会自动识别容器ID</p>
+<p>命令格式：<code>docker exec -it &lt;CONTAINER ID&gt; bash</code></p>
+<p><p class="markdown-image">
+  <img src="C:%5cUsers%5cJohn%5cDesktop%5cblog%5cJohn-Blog%5ccontent%5cimage%5cwindows-docker-%e5%ae%89%e8%a3%85centOS%e7%b3%bb%e7%bb%9f%5c3.jpeg" alt="3"  />
+</p></p>
+<h2 id="5--安装工具">5)  安装工具 <a href="#5--%e5%ae%89%e8%a3%85%e5%b7%a5%e5%85%b7" class="anchor">🔗</a></h2><p>输入ifconfig命令查看网卡信息，系统找不到</p>
+<p>输入命令安装：<code>yum install -y net-tools</code></p>
+<p><code>docker exec -it 91fe8 bash</code></p>
+
+    </div>
+
+    
+        <div class="tags">
+            
+                <a href="https://example.com/tags/windows">Windows</a>
+            
+                <a href="https://example.com/tags/linux">Linux</a>
+            
+                <a href="https://example.com/tags/docker">Docker</a>
+            
+                <a href="https://example.com/tags/mirror">Mirror</a>
+            
         </div>
     
+    
+    
+  <div id="comment">
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "your-disqus-shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
 
 
-</div>
+</section>
+
 
     </main>
     

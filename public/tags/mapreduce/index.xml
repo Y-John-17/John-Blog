@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hadoop on Hugo</title>
-    <link>https://example.com/tags/hadoop/</link>
-    <description>Recent content in Hadoop on Hugo</description>
+    <title>Mapreduce on Hugo</title>
+    <link>https://example.com/tags/mapreduce/</link>
+    <description>Recent content in Mapreduce on Hugo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Nov 2022 10:51:58 +0800</lastBuildDate><atom:link href="https://example.com/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Nov 2022 10:51:58 +0800</lastBuildDate><atom:link href="https://example.com/tags/mapreduce/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hadoop词频统计</title>
       <link>https://example.com/posts/hadoop%E8%AF%8D%E9%A2%91%E7%BB%9F%E8%AE%A1/</link>
@@ -23,15 +23,6 @@
       
       <guid>https://example.com/posts/mapreduce%E6%B0%94%E6%B8%A9%E7%BB%9F%E8%AE%A1%E5%AE%9E%E9%AA%8C/</guid>
       <description>MapReduce气温统计实验 🔗一、数据集准备 🔗数据集下载地址：ftp://ftp.ncdc.noaa.gov/pub/data/uscrn</description>
-    </item>
-    
-    <item>
-      <title>Hadoop完全分布式搭建</title>
-      <link>https://example.com/posts/hadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</link>
-      <pubDate>Tue, 22 Nov 2022 20:14:57 +0800</pubDate>
-      
-      <guid>https://example.com/posts/hadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</guid>
-      <description>Hadoop-3.1.4 完全分布式集群搭建 🔗 Hadoop是一个由Apache基金会所开发的分布式系统基础架构。用户可以在不了解分布式底层细节的情况下，开发分布式程</description>
     </item>
     
   </channel>

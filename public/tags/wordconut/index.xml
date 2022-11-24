@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wordconut on Hugo</title>
+    <link>https://example.com/tags/wordconut/</link>
+    <description>Recent content in Wordconut on Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Nov 2022 10:51:58 +0800</lastBuildDate><atom:link href="https://example.com/tags/wordconut/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hadoop词频统计</title>
+      <link>https://example.com/posts/hadoop%E8%AF%8D%E9%A2%91%E7%BB%9F%E8%AE%A1/</link>
+      <pubDate>Thu, 24 Nov 2022 10:51:58 +0800</pubDate>
+      
+      <guid>https://example.com/posts/hadoop%E8%AF%8D%E9%A2%91%E7%BB%9F%E8%AE%A1/</guid>
+      <description>Hadoop词频统计 🔗前期准备 🔗 该实验采用Hadoop单分布模式即可满足，需要自己前期搭建 Hadoop守护进程启动 cd ./hadoop/sbin/start-all.sh 查看相关守护进程是否已</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <title>Hugo</title>
+    <title>Hadoop词频统计 | Hugo</title>
 
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
 <meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="My Blog">
+<meta name="description" content="Hadoop词频统计 🔗前期准备 🔗 该实验采用Hadoop单分布模式即可满足，需要自己前期搭建 Hadoop守护进程启动 cd ./hadoop/sbin/start-all.sh 查看相关守护进程是否已">
 <meta name="generator" content="Hugo 0.106.0">
 
 
@@ -37,16 +37,13 @@ if (!doNotTrack) {
 
 
 
-  
-    <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Hugo" />
-    <link href="/index.xml" rel="feed" type="application/rss+xml" title="Hugo" />
-  
-
 
   </head>
 
   <body>
     <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
 	
 	<a href="/posts">Archive</a>
 	<a href="/tags">Tags</a>
@@ -62,87 +59,154 @@ if (!doNotTrack) {
 
     <main class="main">
       
-<header class="profile">
-    
-        <img class="avatar" alt="avatar" src="/images/avatar.png" />
-    
 
-    <h1>Hugo</h1>
-    
-    
-      <h2>Software Engineer</h2>
-    
-</header>
+<section id="single">
+    <h1 class="title">Hadoop词频统计</h1>
 
-<div id="list-page">
-    
+    <div class="tip">
+        <time datetime="2022-11-24 10:51:58 &#43;0800 CST">Nov 24, 2022</time>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          340 words
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          1 minute read
+        </span>
+    </div>
+
     
     
         
-        
-        <section class="item">
+  
+    <aside class="toc">
+      <details>
+          <summary>Table of Contents
+          </summary>
           <div>
-            <h1 class="title"><a href='/posts/windows-docker-%E5%AE%89%E8%A3%85centos%E7%B3%BB%E7%BB%9F/'>Windows Docker 安装centOS系统</a></h1>
-            <div class ="date">
-                <time datetime="2022-11-24 10:52:34 &#43;0800 CST">Nov 24, 2022</time>  
-            </div>
+              <nav id="TableOfContents">
+  <ul>
+    <li><a href="#前期准备">前期准备</a></li>
+    <li><a href="#使用hadoop自带的jar文件脚本处理数据">使用Hadoop自带的Jar文件脚本处理数据</a></li>
+    <li><a href="#end-">End !</a></li>
+  </ul>
+</nav>
           </div>
+      </details>
+    </aside>
+  
 
-          
-              <div class="summary">windows docker 安装centOS系统 🔗1) 拉取镜像 🔗输入命令docker pull centos:7 从仓库拉取centos7的镜像 2) 查看本地镜像 🔗命令：docker images 可以查看已</div>
-          
-
-        </section>
-    
-        
-        
-        <section class="item">
-          <div>
-            <h1 class="title"><a href='/posts/hadoop%E8%AF%8D%E9%A2%91%E7%BB%9F%E8%AE%A1/'>Hadoop词频统计</a></h1>
-            <div class ="date">
-                <time datetime="2022-11-24 10:51:58 &#43;0800 CST">Nov 24, 2022</time>  
-            </div>
-          </div>
-
-          
-              <div class="summary">Hadoop词频统计 🔗前期准备 🔗 该实验采用Hadoop单分布模式即可满足，需要自己前期搭建 Hadoop守护进程启动 cd ./hadoop/sbin/start-all.sh 查看相关守护进程是否已</div>
-          
-
-        </section>
-    
-        
-        
-        <section class="item">
-          <div>
-            <h1 class="title"><a href='/posts/mapreduce%E6%B0%94%E6%B8%A9%E7%BB%9F%E8%AE%A1%E5%AE%9E%E9%AA%8C/'>MapReduce气温统计实验</a></h1>
-            <div class ="date">
-                <time datetime="2022-11-24 10:51:41 &#43;0800 CST">Nov 24, 2022</time>  
-            </div>
-          </div>
-
-          
-              <div class="summary">MapReduce气温统计实验 🔗一、数据集准备 🔗数据集下载地址：ftp://ftp.ncdc.noaa.gov/pub/data/uscrn</div>
-          
-
-        </section>
-    
 
     
-        <div class="pagination">
-          
-          
-          
-              <span class="next">
-                  <a href="/page/2/">
-                      Older posts <span class="arrow">→</span>
-                  </a>
-              </span>
-          
+
+
+    <div class="content">
+      <h1 id="hadoop词频统计">Hadoop词频统计 <a href="#hadoop%e8%af%8d%e9%a2%91%e7%bb%9f%e8%ae%a1" class="anchor">🔗</a></h1><h2 id="前期准备">前期准备 <a href="#%e5%89%8d%e6%9c%9f%e5%87%86%e5%a4%87" class="anchor">🔗</a></h2><blockquote>
+<p>该实验采用Hadoop单分布模式即可满足，需要自己前期搭建</p>
+</blockquote>
+<p><strong>Hadoop守护进程启动</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>cd <span style="color:#666">./</span>hadoop<span style="color:#666">/</span>sbin<span style="color:#666">/</span>start<span style="color:#666">-</span>all<span style="color:#666">.</span><span style="color:#b44">sh</span>
+</span></span></code></pre></div><ul>
+<li>查看相关守护进程是否已经启动</li>
+<li>使用<code>jps</code>命令</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>Jps
+</span></span><span style="display:flex;"><span>NodeManager
+</span></span><span style="display:flex;"><span>SecondaryNameNode
+</span></span><span style="display:flex;"><span>NameNode
+</span></span><span style="display:flex;"><span>DataNode
+</span></span><span style="display:flex;"><span>ResourceManager
+</span></span></code></pre></div><p><strong>数据集预处理</strong></p>
+<ol>
+<li>数据集编码格式<code>UTF-8</code>,所采用数据集中词频采用统一分隔符，否则需要自行编写函数</li>
+<li>在Linux用户目录下新建一个<code>wordcount</code>文件夹，导入数据集</li>
+<li>在hdfs新建文件目录</li>
+</ol>
+<ul>
+<li><code>hdfs dfs -mkdir /wordcount</code></li>
+<li><code>hdfs dfs -mkdir /wordcount/input</code></li>
+<li><code>hdfs dfs -mkdir /wordcount/output</code></li>
+</ul>
+<ol start="4">
+<li>将数据集存储到hdfs</li>
+</ol>
+<ul>
+<li><code>cd /tmp/wordcount</code></li>
+<li><code>hdfs dfs -put wordcount.txt /wordcount/input</code></li>
+<li><code>hdfs dfs -ls /input</code></li>
+</ul>
+<h2 id="使用hadoop自带的jar文件脚本处理数据">使用Hadoop自带的Jar文件脚本处理数据 <a href="#%e4%bd%bf%e7%94%a8hadoop%e8%87%aa%e5%b8%a6%e7%9a%84jar%e6%96%87%e4%bb%b6%e8%84%9a%e6%9c%ac%e5%a4%84%e7%90%86%e6%95%b0%e6%8d%ae" class="anchor">🔗</a></h2><p><strong>数据集处理</strong></p>
+<ul>
+<li>
+<p><code>cd ./hadoop/share/hadoop/mapreduce/</code></p>
+</li>
+<li>
+<p><code>ll hadoop-mapreduce-examples-3.1.3.jar</code></p>
+</li>
+<li>
+<p><code>hadoop  jar ./hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar  wordcount   wordcount/input/wordcount.txt  wordcount/output</code>
+#jar表示运行脚本类型，后面是具体脚本存储路径，wordcount是脚本中Java主函数类名，后面是数据集存储路径和输出路径
+<strong>数据集处理结果查看</strong></p>
+</li>
+<li>
+<p><code>hdfs dfs -cat /wordcount/output/part-r-00000</code>
+<strong>数据集处理结果下载</strong></p>
+</li>
+<li>
+<p><code>hdfs dfs -get /wordcount/output/</code></p>
+</li>
+</ul>
+<h2 id="end-">End ! <a href="#end-" class="anchor">🔗</a></h2>
+    </div>
+
+    
+        <div class="tags">
+            
+                <a href="https://example.com/tags/hadoop">hadoop</a>
+            
+                <a href="https://example.com/tags/wordconut">Wordconut</a>
+            
+                <a href="https://example.com/tags/mapreduce">Mapreduce</a>
+            
+                <a href="https://example.com/tags/big-data">Big Data</a>
+            
+                <a href="https://example.com/tags/datascience">Datascience</a>
+            
         </div>
     
+    
+    
+  <div id="comment">
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "your-disqus-shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
 
 
-</div>
+</section>
+
 
     </main>
     
